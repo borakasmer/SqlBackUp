@@ -1,0 +1,60 @@
+﻿@model Vehicle
+@{
+    ViewData["Title"] = "Sql Backup";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+</div>
+<div class="container">
+    <div class="jumbotron">
+        <h3>Borsoft & Vehicle Detail</h3>
+    </div>
+    <hr>
+    @using(Html.BeginForm("Update","Home",FormMethod.Post))
+    {  
+        string btnText = "";
+        btnText=Model.ID > 0 ? "Güncelle" : "Kaydet";
+        <table class="table">
+            <tr>
+                <td>
+                    Ad:
+                </td>
+                <td>
+                    <input type="text" value="@Model.Name" id="Name" name="Name">
+                </td>
+            </tr>      
+            <tr>
+                <td>
+                    Fiyat:
+                </td>
+                <td>
+                    <input type="text" value="@Model.Price" id="Price" name="Price">
+                </td>
+            </tr>             
+            <tr>
+                <td>
+                    Üretim Tarihi:
+                </td>
+                <td>    
+                    @{var date=Model.MFDate.ToString("yyyy-MM-dd");}
+                    <input type="date" id="MFDate" name="MFDate" value="@date" / >                                
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Toplam Sayı:
+                </td>
+                <td>
+                    <input type="text" value="@Model.Quantity" id="Quantity" name="Quantity">
+                    <input type="submit" value=@btnText class="btn btn-warning">
+                </td>
+            </tr>                                                  
+        </table>
+        <input type="hidden" id="ID" name="ID" value="@Model.ID">
+    }
+</div>

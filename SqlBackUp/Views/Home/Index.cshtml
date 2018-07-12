@@ -1,0 +1,49 @@
+﻿@model List<Vehicle>
+@{
+    ViewData["Title"] = "Sql Backup";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+</div>
+<div class="container">
+    <div class="jumbotron">
+        <h3>Borsoft & Vehicle</h3>
+    </div>
+    <hr>
+    <a href="/Home/Detail"><input type="button" value="Yeni Kayıt Gir" class="btn btn-primary"></a>
+    <table class="table">
+        <thead>
+            <th></th>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Fiyat</th>
+            <th>Tarih</th>
+            <th>Toplam Adet</th>          
+        </thead>
+        <tbody>
+            @{var counter=0;}
+            @foreach(var vehicle in Model)
+            {    
+                counter++;          
+                var cls= counter%2==0?"active":"info";        
+                <tr class=@cls>                             
+                    <td>
+                        <a href="/Home/Detail/@vehicle.ID"><input type="button" value="Detay" class="btn btn-warning"></a>
+                    </td>
+                    <td>
+                        @vehicle.ID
+                    </td>
+                    <td>@vehicle.Name</td>
+                    <td>@vehicle.Price</td>
+                    <td>@vehicle.MFDate</td>
+                    <td>@vehicle.Quantity</td>                   
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
